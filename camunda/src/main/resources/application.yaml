@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:h2:./business-db;DB_CLOSE_ON_EXIT=FALSE
+  jpa:
+    open-in-view: false
+  session:
+    store-type: redis
+  redis:
+    host: redis
+    port: 6379
+
+camunda.bpm:
+  filter:
+    create: All Tasks
+  admin-user:
+    id: demo
+    password: demo
+  generic-properties.properties:
+    telemetry-reporter-activate: false
+  default-serialization-format: application/json
+  history-level: full

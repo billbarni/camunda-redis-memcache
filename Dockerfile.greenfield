@@ -1,0 +1,7 @@
+FROM openjdk:14-jdk-alpine
+WORKDIR /
+ARG JAR_FILE=camunda/target/*.jar
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -jar /app.jar ${0} ${@}"]
+EXPOSE 8080
+EXPOSE 5005
