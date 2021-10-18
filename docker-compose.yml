@@ -1,25 +1,97 @@
 version: '3.8'
 
 services:
+  postgres:
+    image: postgres:13.4-alpine
+    environment:
+      POSTGRES_DB: session
+      POSTGRES_USER: thebank
+      POSTGRES_PASSWORD: 1234567890
+    ports:
+      - "5432:5432"
+    volumes:
+      - "C:/Users/User/Documents/DockerVolumes/pg:/var/lib/postgresql"
+    networks:
+      - bank_network
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "16543:80"
+    volumes:
+      - "C:/Users/User/Documents/DockerVolumes/pgadmin:/var/lib/pgadmin"
+    depends_on:
+      - postgres
+    networks:
+      - bank_network
+
+  mysqlbusiness:
+    image: mysql:8.0
+    restart: always
+    ports:
+      - "6603:3306"
+    environment:
+      MYSQL_DATABASE: business
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - bank_network
+  mysqlcamunda:
+    image: mysql:8.0
+    restart: always
+    ports:
+      - "6604:3306"
+    environment:
+      MYSQL_DATABASE: camunda
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - bank_network
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - "9090:80"
+    environment:
+      PMA_HOST: mysqlcamunda
+    depends_on:
+      - mysqlbusiness
+      - mysqlcamunda
+    networks:
+      - bank_network
+
   camunda_bpm_0:
     build: 
       context: .
-      dockerfile: Dockerfile.greenfield
+      dockerfile: Dockerfile.jdbcsession
     expose:
       - "8080"
     depends_on:
       - redis
+      - postgres
+      - mysqlbusiness
+      - mysqlcamunda
+    networks:
+      - bank_network
   camunda_bpm_1:
     build:
       context: .
-      dockerfile: Dockerfile.greenfield
+      dockerfile: Dockerfile.jdbcsession
     expose: 
       - "8080"
     depends_on:
       - redis
+      - postgres
+      - mysqlbusiness
+      - mysqlcamunda
+    networks:
+      - bank_network
 
   redis:
     image: redis:3.2-alpine
+    networks:
+      - bank_network
+
   nginx:
     image: nginx:latest
     volumes: 
@@ -29,3 +101,9 @@ services:
       - camunda_bpm_1
     ports:
       - "80:80"
+    networks:
+      - bank_network
+
+networks:
+  bank_network:
+    driver: bridge

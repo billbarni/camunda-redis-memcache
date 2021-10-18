@@ -1,0 +1,38 @@
+server:
+  port: 8080
+
+camunda.bpm:
+  admin-user:
+    id: demo
+    password: demo
+  authorization:
+    enabled: true
+  default-serialization-format: application/json
+  history-level: full
+
+datasource.business:
+  driverClassName: com.mysql.cj.jdbc.Driver
+  jdbc-url: jdbc:mysql://172.26.224.1:6603/business
+  username: root
+  password: root
+  hibernate:
+    hbm2ddl.auto: create
+    dialect: org.hibernate.dialect.MySQL8Dialect
+
+datasource.camunda:
+  driverClassName: com.mysql.cj.jdbc.Driver
+  jdbc-url: jdbc:mysql://172.26.224.1:6604/camunda
+  username: root
+  password: root
+
+datasource.session:
+  driverClassName: org.postgresql.Driver
+  jdbc-url: jdbc:postgresql://172.26.224.1:5432/session
+  username: thebank
+  password: 1234567890
+
+spring:
+  jpa:
+    open-in-view: false
+  session:
+    store-type: jdbc
