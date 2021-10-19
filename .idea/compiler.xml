@@ -12,7 +12,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="camunda-springredis" target="14" />
-      <module name="camunda-springsessionjdbc" target="1.8" />
+      <module name="camunda-springsessionjdbc" target="14" />
     </bytecodeTargetLevel>
   </component>
 </project>

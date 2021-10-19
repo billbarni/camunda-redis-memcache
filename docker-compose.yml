@@ -28,7 +28,7 @@ services:
   camunda_bpm_0:
     build: 
       context: .
-      dockerfile: Dockerfile.springredis
+      dockerfile: Dockerfile.springsessionjdbc
     expose:
       - "8080"
     depends_on:
@@ -39,7 +39,7 @@ services:
   camunda_bpm_1:
     build:
       context: .
-      dockerfile: Dockerfile.springredis
+      dockerfile: Dockerfile.springsessionjdbc
     expose: 
       - "8080"
     depends_on:
