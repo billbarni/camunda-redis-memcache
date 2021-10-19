@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://host.docker.internal:5432/camunda
+    driver-class-name: org.postgresql.Driver
+    username: thebank
+    password: 1234567890
+  jpa:
+    open-in-view: false
+  session:
+    store-type: redis
+  redis:
+    host: redis
+    port: 6379
+
+camunda.bpm:
+  filter:
+    create: All Tasks
+  admin-user:
+    id: demo
+    password: demo
+  generic-properties.properties:
+    telemetry-reporter-activate: false
+  default-serialization-format: application/json
+  history-level: full
