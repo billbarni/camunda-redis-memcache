@@ -1,7 +1,0 @@
-FROM openjdk:8-alpine
-WORKDIR /
-ARG JAR_FILE=greenfield-camunda-springjdbcsession/target/*.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -jar /app.jar ${0} ${@}"]
-EXPOSE 8080
-EXPOSE 5005

@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/camunda-redis-memcache.iml" filepath="$PROJECT_DIR$/.idea/camunda-redis-memcache.iml" />
+      <module fileurl="file://$PROJECT_DIR$/camunda-springredis/camunda-springredis.iml" filepath="$PROJECT_DIR$/camunda-springredis/camunda-springredis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/camunda-springsessionjdbc/camunda-springsessionjdbc.iml" filepath="$PROJECT_DIR$/camunda-springsessionjdbc/camunda-springsessionjdbc.iml" />
     </modules>
   </component>
 </project>
