@@ -9,9 +9,6 @@ services:
       POSTGRES_PASSWORD: 1234567890
     ports:
       - "5432:5432"
-    networks:
-      - bank_network
-
   pgadmin:
     image: dpage/pgadmin4
     environment:
@@ -19,12 +16,8 @@ services:
       PGADMIN_DEFAULT_PASSWORD: "admin"
     ports:
       - "16543:80"
-    volumes:
-      - "C:/Users/User/Documents/DockerVolumes/pgadmin:/var/lib/pgadmin"
     depends_on:
       - postgres
-    networks:
-      - bank_network
 
   camunda_bpm_0:
     build: 
@@ -35,8 +28,6 @@ services:
     depends_on:
       - redis
       - postgres
-    networks:
-      - bank_network
   camunda_bpm_1:
     build:
       context: .
@@ -46,14 +37,9 @@ services:
     depends_on:
       - redis
       - postgres
-    networks:
-      - bank_network
 
   redis:
     image: redis:3.2-alpine
-    networks:
-      - bank_network
-
   nginx:
     image: nginx:latest
     volumes: 
@@ -63,9 +49,3 @@ services:
       - camunda_bpm_1
     ports:
       - "80:80"
-    networks:
-      - bank_network
-
-networks:
-  bank_network:
-    driver: bridge
