@@ -14,17 +14,17 @@ import javax.sql.DataSource;
 @Configuration
 public class CamundaDatabaseConfiguration {
 
-  @Primary
-  @Bean(name = "camundaBpmDataSource")
-  @ConfigurationProperties(prefix = "datasource.camunda")
-  public DataSource businessDataSource() {
-    return DataSourceBuilder.create().build();
-  }
+    @Primary // TODO Remove the primary from here and define your own if you need to create your tables/entities
+    @Bean(name = "camundaBpmDataSource")
+    @ConfigurationProperties(prefix = "datasource.camunda")
+    public DataSource businessDataSource() {
+        return DataSourceBuilder.create().build();
+    }
 
-  @Primary
-  @Bean(name = "camundaBpmTransactionManager")
-  public PlatformTransactionManager camundaBpmTransactionManager(@Qualifier("camundaBpmDataSource") DataSource dataSource) {
-    return new DataSourceTransactionManager(dataSource);
-  }
+    @Primary // TODO Remove the primary from here and define your own if you need to create your tables/entities
+    @Bean(name = "camundaBpmTransactionManager")
+    public PlatformTransactionManager camundaBpmTransactionManager(@Qualifier("camundaBpmDataSource") DataSource dataSource) {
+        return new DataSourceTransactionManager(dataSource);
+    }
 
 }
