@@ -1,4 +1,4 @@
-package com.example.workflow;
+package com.example.workflow.config;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableJdbcHttpSession
-public class SessionConfig extends AbstractHttpSessionApplicationInitializer {
+public class JDBCHTTPSessionDatabaseConfig extends AbstractHttpSessionApplicationInitializer {
 
   @SpringSessionDataSource
   @Bean(name = "sessionBpmDataSource")
@@ -41,8 +41,8 @@ public class SessionConfig extends AbstractHttpSessionApplicationInitializer {
         DatabasePopulatorUtils.execute(sessionDatabasePopulator(), dataSource);
       } catch (Exception e) {
         // TODO
-        // The populator will fail
-        // since it will execute the Spring Session script always.
+        // The populator will fail if the database exists
+        // since it will execute the Spring Session script always when the server starts.
         // Some form of treatment to check for an already present database should be made
         // Or the database should be pre-started correctly.
         e.printStackTrace();

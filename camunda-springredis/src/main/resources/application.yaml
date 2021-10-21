@@ -4,8 +4,6 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: thebank
     password: 1234567890
-  jpa:
-    open-in-view: false
   session:
     store-type: redis
   redis:

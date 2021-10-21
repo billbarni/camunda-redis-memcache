@@ -12,12 +12,12 @@ camunda.bpm:
 
 datasource.camunda:
   driverClassName: org.postgresql.Driver
-  jdbcUrl: jdbc:postgresql://172.23.96.1:5432/camunda #TODO replace with docker/pg ip or host.docker.internal
+  jdbcUrl: jdbc:postgresql://172.23.96.1:5432/camunda
   username: thebank
   password: 1234567890
 
 datasource.session:
   driverClassName: org.postgresql.Driver
-  jdbcUrl: jdbc:postgresql://172.23.96.1:5432/session #TODO replace with docker/pg ip or host.docker.internal
+  jdbcUrl: jdbc:postgresql://172.23.96.1:5432/session
   username: thebank
   password: 1234567890
