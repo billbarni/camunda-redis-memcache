@@ -1,5 +1,0 @@
-com\example\workflow\config\CamundaDatabaseConfiguration.class
-com\example\workflow\config\JDBCHTTPSessionDatabaseConfig.class
-com\example\workflow\controller\WhosThereRESTController.class
-com\example\workflow\utils\WhoIsMeUtil.class
-com\example\workflow\Application.class
